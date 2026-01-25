@@ -1,38 +1,118 @@
-.App {
-  text-align: center;
+/* --- CONFIGURACIÓN GLOBAL --- */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    /* Fondo oscuro con degradado profundo */
+    background: radial-gradient(circle at top right, #2d1b4e, #120c1f 50%),
+                radial-gradient(circle at bottom left, #1e1b4b, #120c1f 50%);
+    background-color: #120c1f;
+    color: white;
+    min-height: 100vh;
+    /* Padding inferior para que el reproductor no tape el contenido */
+    padding-bottom: 120px; 
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* --- TARJETA DE LA CANCIÓN (Menu.js) --- */
+.menu-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin-top: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.album-cover {
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-.App-link {
-  color: #61dafb;
+.song-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-top: 20px;
+    margin-bottom: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.artist-name {
+    color: #b3b3b3;
+    font-weight: 400;
+}
+
+/* --- BOTÓN DE REPRODUCCIÓN (Clave para Chrome) --- */
+.btn-reproducir-cel {
+    background: #8a2be2; /* Color lila eléctrico */
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
+}
+
+.btn-reproducir-cel:hover {
+    background: #9d46ff;
+    transform: translateY(-2px);
+}
+
+.btn-reproducir-cel:active {
+    transform: scale(0.95);
+}
+
+/* --- REPRODUCTOR FIJO DE SOUNDCLOUD --- */
+.reproductor-fijo-soundcloud {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: #111;
+    z-index: 9999;
+    border-top: 2px solid #8a2be2;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.7);
+}
+
+.btn-cerrar-sc {
+    position: absolute;
+    top: -30px;
+    right: 20px;
+    background: #8a2be2;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* --- ESTILO PARA EL LOADING --- */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    font-size: 1.2rem;
+    color: #8a2be2;
+    font-weight: bold;
 }

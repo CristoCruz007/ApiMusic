@@ -1,0 +1,19 @@
+.artist-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.artist-img:hover {
+  transform: scale(1.08);
+}
+@media (max-width: 576px) {
+  .artist-img {
+    width: 90px;
+    height: 90px;
+  }
+}
