@@ -14,7 +14,7 @@ export default function Artista() {
   const fetchDataArtista = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://192.168.1.73:3001/api/artista/${id}`);
+      const response = await axios.get(`http://192.168.1.73:3001/api/artistas/${id}`);
       
       // LOG IMPORTANTE: Revisa la consola de tu PC (F12) para ver cómo llega la data
       console.log("Datos del artista:", response.data);
