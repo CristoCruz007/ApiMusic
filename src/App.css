@@ -150,7 +150,7 @@ body {
     color: #8a2be2;
 }
 
-/* --- MEDIA QUERIES (Móviles pequeños) --- */
+/* --- MEDIA PARA (Móviles pequeños) --- */
 @media (max-width: 480px) {
     .glass-card {
         padding: 25px 15px;

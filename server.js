@@ -44,14 +44,20 @@ app.get('/api/genres/:id/artists', async (req, res) => {
     }
 });
 
-// 2. DETALLE DE UNA CANCIÓN (TRACK)
+// 2. DETALLE DE UNA CANCIÓN (TRACK) - CORREGIDO
 app.get('/api/track/:id', async (req, res) => {
     try {
         const { id } = req.params;
+        // Se corrigió "api. .com" por "api.deezer.com"
         const response = await axios.get(`https://api.deezer.com/track/${id}`);
-        res.json(response.data); // Aquí enviamos el objeto directo del track
+        
+        // Deezer devuelve el objeto directamente, no dentro de .data.data
+        res.json(response.data); 
+
+        console.log(`✅ Detalle del track ${id} enviado`);
     } catch (error) {
-        res.status(500).json({ error: "No se encontró el track" });
+        console.error("❌ Error al obtener el track:", error.message);
+        res.status(500).json({ error: "No se encontró el track o error en Deezer" });
     }
 });
 
@@ -90,7 +96,20 @@ app.get('/api/new-music', async (req, res) => {
         res.status(500).json({ data: [] });
     }
 });
+// 4. BÚSQUEDA DE CANCIONES
+app.get('/api/search', async (req, res) => {
+    try {
+        const { q } = req.query; 
+        if (!q) return res.status(400).json({ data: [] });
 
+        const response = await axios.get(`https://api.deezer.com/search?q=${encodeURIComponent(q)}`);
+        res.json({ data: response.data.data });
+        console.log(`🔍 Buscando: ${q}`);
+    } catch (error) {
+        console.error("❌ Error en search:", error.message);
+        res.status(500).json({ data: [], error: "Error en el servidor" });
+    }
+});
 app.listen(3001, '0.0.0.0', () => {
-    console.log("🚀 Servidor Deezer activo en http://192.168.1.73:3001/api/top-artists");
+    console.log("🚀 Servidor Deezer activo en http://192.168.1.71:3001/api/top-artists");
 });

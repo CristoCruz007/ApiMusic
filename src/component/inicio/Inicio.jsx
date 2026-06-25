@@ -3,8 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./imgen.css";
 
-const apiTopArtistas = "http://192.168.1.73:3001/api/top-artists";
-const apiTopMusica = "http://192.168.1.73:3001/api/new-music";
+const apiTopArtistas = `${process.env.REACT_APP_API_URL}/api/top-artists`;
+const apiTopMusica = `${process.env.REACT_APP_API_URL}/api/new-music`;
 export default function Inicio() {
   const [musicaApi, setMusicaApi] = useState([]);
   const [musicaTop, setMusicaTop] = useState([]);
@@ -43,7 +43,7 @@ export default function Inicio() {
     <div className="container mt-4">
       {error && <p className="text-danger">{error}</p>}
 
-      <h3 className="mb-4">🔥 Top Musica</h3>
+      <h3 className="mb-4"style={{color: "black"}} >🔥 Top Musica</h3>
 
       {/* --- CAROUSEL --- */}
       <div id="carouselExampleControls" className="carousel slide mb-5" data-bs-ride="carousel">
@@ -109,17 +109,21 @@ export default function Inicio() {
       </div>
 
       {/* --- TOP ARTISTAS --- */}
-      <h3 className="mb-4">⭐ Top Artistas</h3>
+      <h3 className="mb-4"style={{color: "black"}} >⭐ Top Artistas</h3>
       <div className="row g-3">
         {musicaApi.map((top) => (
           <div key={top.id} className="col-6 col-md-4 col-lg-2">
             <div className="card h-100 text-center shadow-sm artist-card">
-              <img
+              <Link
+                to={`/artista/${encodeURIComponent(top.name)}/${top.id}`}
+              >
+                <img
                 src={top.picture_medium}
                 className="rounded-circle mx-auto mt-3"
                 style={{ width: '100px', height: '100px', objectFit: 'cover' }}
                 alt={top.name}
               />
+              </Link>
               <div className="card-body p-2">
                 <h6 className="card-title text-truncate">{top.name}</h6>
               </div>
